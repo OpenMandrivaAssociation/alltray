@@ -15,7 +15,7 @@ License:	GPL
 Url:		http://alltray.sourceforge.net/
 Source0:	%{name}-%{version}.tar.bz2
 BuildRequires:	gtk+2-devel
-BuildRequires:  GConf2
+BuildRequires:  GConf2 libGConf2-devel
 Requires:	%{libname} = %{epoch}:%{version}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
