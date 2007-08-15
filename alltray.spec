@@ -1,8 +1,9 @@
 %define	name	alltray
-%define	version 0.66
-%define	release	%mkrel 3
+%define	version 0.69
+%define	release	%mkrel 1
 %define	major	0
 %define	libname	%mklibname %{name} %{major}
+%define develname %mklibname %{name} -d
 
 Summary:	Docks any application into the system tray
 Name:		%{name}
@@ -27,19 +28,22 @@ tray/notification area. A highlight feature is that a click on the
 Summary:	Shared library for alltray
 Group:		System/Libraries
 Provides:       %{_lib}%{name} = %{epoch}:%{version}-%{release}
+Conflicts:	liballtray0-devel < 0:0.69
 
 %description -n	%{libname}
 Shared library for alltray.
 
-%package -n	%{libname}-devel
+%package -n %{develname}
 Summary:	Development libraries for alltray
 Group:          Development/C
 Requires:       %{libname} = %{epoch}:%{version}
 Provides:       %{name}-devel = %{epoch}:%{version}-%{release}
 Provides:       lib%{name}-devel = %{epoch}:%{version}-%{release}
 Provides:       %{_lib}%{name}-devel = %{epoch}:%{version}-%{release}
+Conflicts:	liballtray0 < 0:0.69
+Obsoletes:	liballtray0-devel
 
-%description -n %{libname}-devel
+%description -n %{develname}
 Development libraries for alltray.
 
 %prep
@@ -69,9 +73,9 @@ rm -rf %{buildroot}
 %files -n %{libname}
 %defattr(-,root,root)
 %{_libdir}/lib*.so.*
-%{_libdir}/lib*.la
 
-%files -n %{libname}-devel
+%files -n %{develname}
 %defattr(-,root,root)
 %{_libdir}/lib*.so
+%{_libdir}/lib*.la
 
