@@ -1,6 +1,6 @@
 %define	name	alltray
 %define	version 0.69
-%define	release	%mkrel 1
+%define	release	%mkrel 2
 %define	major	0
 %define	libname	%mklibname %{name} %{major}
 %define develname %mklibname %{name} -d
@@ -41,7 +41,7 @@ Provides:       %{name}-devel = %{epoch}:%{version}-%{release}
 Provides:       lib%{name}-devel = %{epoch}:%{version}-%{release}
 Provides:       %{_lib}%{name}-devel = %{epoch}:%{version}-%{release}
 Conflicts:	liballtray0 < 0:0.69
-Obsoletes:	liballtray0-devel
+Obsoletes:	%{mklibname alltray 0}-devel
 
 %description -n %{develname}
 Development libraries for alltray.
