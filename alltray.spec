@@ -1,23 +1,21 @@
-%define	name	alltray
-%define	version 0.69
-%define	release	%mkrel 2
 %define	major	0
 %define	libname	%mklibname %{name} %{major}
 %define develname %mklibname %{name} -d
 
 Summary:	Docks any application into the system tray
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
+Name:		alltray
+Version:	0.70
+Release:	%mkrel 1
 Epoch:		0
 Group:		Graphical desktop/Other
 License:	GPL
 Url:		http://alltray.sourceforge.net/
-Source0:	%{name}-%{version}.tar.bz2
+Source0:	http://downloads.sourceforge.net/sourceforge/alltray/alltray-%{version}.tar.gz
 BuildRequires:	gtk+2-devel
-BuildRequires:  GConf2 libGConf2-devel
-Requires:	%{libname} = %{epoch}:%{version}
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildRequires:  GConf2
+BuildRequires:  libGConf2-devel
+Requires:	%{libname} = %{epoch}:%{version}-%{release}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 With AllTray you can dock any application into the system
@@ -28,7 +26,7 @@ tray/notification area. A highlight feature is that a click on the
 Summary:	Shared library for alltray
 Group:		System/Libraries
 Provides:       %{_lib}%{name} = %{epoch}:%{version}-%{release}
-Conflicts:	liballtray0-devel < 0:0.69
+Conflicts:	%{_lib}%{name}0-devel < %{epoch}:%{version}-%{release}
 
 %description -n	%{libname}
 Shared library for alltray.
@@ -40,7 +38,7 @@ Requires:       %{libname} = %{epoch}:%{version}
 Provides:       %{name}-devel = %{epoch}:%{version}-%{release}
 Provides:       lib%{name}-devel = %{epoch}:%{version}-%{release}
 Provides:       %{_lib}%{name}-devel = %{epoch}:%{version}-%{release}
-Conflicts:	liballtray0 < 0:0.69
+Conflicts:	%{_lib}%{name}0 < %{epoch}:%{version}-%{release}
 Obsoletes:	%{mklibname alltray 0}-devel
 
 %description -n %{develname}
@@ -50,32 +48,33 @@ Development libraries for alltray.
 %setup -q
 
 %build
-%configure2_5x
-%make
+%{configure2_5x}
+%{make}
  
 %install
-rm -rf %{buildroot}
-%makeinstall
-
-%post -n %{libname} -p /sbin/ldconfig
-%postun -n %{libname} -p /sbin/ldconfig
+%{__rm} -rf %{buildroot}
+%{makeinstall_std}
 
 %clean
 %{__rm} -rf %{buildroot}
 
+%post -n %{libname} -p /sbin/ldconfig
+
+%postun -n %{libname} -p /sbin/ldconfig
+
 %files 
-%defattr(-,root,root)
-%{_bindir}/%{name}
+%defattr(0644,root,root,0755)
+%attr(0755,root,root) %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.png
 %{_mandir}/man1/%{name}.1*
 
 %files -n %{libname}
-%defattr(-,root,root)
+%defattr(-,root,root,0755)
 %{_libdir}/lib*.so.*
 
 %files -n %{develname}
-%defattr(-,root,root)
+%defattr(-,root,root,0755)
 %{_libdir}/lib*.so
 %{_libdir}/lib*.la
 
