@@ -11,6 +11,7 @@ Group:		Graphical desktop/Other
 License:	GPL
 Url:		http://alltray.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/sourceforge/alltray/alltray-%{version}.tar.gz
+Patch0:		alltray-0.70-fix-link.patch
 BuildRequires:	gtk+2-devel
 BuildRequires:  GConf2
 BuildRequires:  libGConf2-devel
@@ -46,6 +47,7 @@ Development libraries for alltray.
 
 %prep
 %setup -q
+%patch0 -p0
 
 %build
 %{configure2_5x}
@@ -75,7 +77,8 @@ Development libraries for alltray.
 
 %files -n %{libname}
 %defattr(-,root,root,0755)
-%{_libdir}/lib*.so.*
+%{_libdir}/lib*.so.%{major}
+%{_libdir}/lib*.so.%{major}.*
 
 %files -n %{develname}
 %defattr(-,root,root,0755)
