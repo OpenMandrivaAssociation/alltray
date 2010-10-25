@@ -51,6 +51,9 @@ Development libraries for alltray.
 %setup -q
 %patch0 -p0
 
+#fix .desktop file
+sed -i -e 's|%{name}.png|%{name}|' -e 's|Application;|GTK;|' %{name}.desktop
+
 %build
 %{configure2_5x}
 %{make}
