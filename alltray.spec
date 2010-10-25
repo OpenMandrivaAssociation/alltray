@@ -4,14 +4,14 @@
 
 Summary:	Docks any application into the system tray
 Name:		alltray
-Version:	0.70
-Release:	%mkrel 4
+Version:	0.71a
+Release:	%mkrel 1
 Epoch:		0
 Group:		Graphical desktop/Other
 License:	GPL
-Url:		http://alltray.sourceforge.net/
-Source0:	http://downloads.sourceforge.net/sourceforge/alltray/alltray-%{version}.tar.gz
-Patch0:		alltray-0.70-fix-link.patch
+Url:		http://alltray.trausch.us/
+Source0:	http://launchpad.net/alltray/old-maintenance/%{version}/+download/%{name}-%{version}.tar.gz
+Patch0:		alltray-0.71a-fix_linking.patch
 BuildRequires:	gtk+2-devel
 BuildRequires:  GConf2
 BuildRequires:  libGConf2-devel
@@ -19,9 +19,11 @@ Requires:	%{libname} = %{epoch}:%{version}-%{release}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
-With AllTray you can dock any application into the system
-tray/notification area. A highlight feature is that a click on the
-"close" button will minimize to system tray.
+AllTray is a program you can use on systems running the X Window System to
+dock any application which doesn't have a native tray icon into the system
+tray/notification area. AllTray works with many desktop environments and
+window managers, including Metacity  on GNOME, KWin  on KDE  and OpenBox,
+both standalone and with GNOME or KDE.
 
 %package -n	%{libname}
 Summary:	Shared library for alltray
@@ -57,16 +59,11 @@ Development libraries for alltray.
 %{__rm} -rf %{buildroot}
 %{makeinstall_std}
 
+#we don't want this
+%{__rm} -rf %{buildroot}%{_libdir}/liballtray.la
+
 %clean
 %{__rm} -rf %{buildroot}
-
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
 
 %files 
 %defattr(0644,root,root,0755)
@@ -83,5 +80,4 @@ Development libraries for alltray.
 %files -n %{develname}
 %defattr(-,root,root,0755)
 %{_libdir}/lib*.so
-%{_libdir}/lib*.la
 
