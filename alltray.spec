@@ -4,8 +4,8 @@
 
 Summary:	Docks any application into the system tray
 Name:		alltray
-Version:	0.71a
-Release:	%mkrel 2
+Version:	0.71b
+Release:	%mkrel 1
 Epoch:		0
 Group:		Graphical desktop/Other
 License:	GPL
