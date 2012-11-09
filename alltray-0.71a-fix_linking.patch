@@ -1,0 +1,32 @@
+diff -p -up ./lib/Makefile.am.orig ./lib/Makefile.am
+--- ./lib/Makefile.am.orig	2010-02-12 02:01:45.000000000 +0100
++++ ./lib/Makefile.am	2010-10-25 19:59:00.000000000 +0200
+@@ -4,5 +4,6 @@ lib_LTLIBRARIES = liballtray.la
+ 
+ liballtray_la_SOURCES = nomap.c
+ 
+-liballtray_la_LDFLAGS = -version-info 0:0:0 -ldl -lX11
++liballtray_la_LDFLAGS = -version-info 0:0:0
++liballtray_la_LIBADD = -ldl -lX11
+ liballtray_la_CFLAGS = $(X_CFLAGS)
+diff -p -up ./lib/Makefile.in.orig ./lib/Makefile.in
+--- ./lib/Makefile.in.orig	2010-02-12 02:03:04.000000000 +0100
++++ ./lib/Makefile.in	2010-10-25 20:00:22.000000000 +0200
+@@ -68,7 +68,7 @@ am__base_list = \
+   sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
+ am__installdirs = "$(DESTDIR)$(libdir)"
+ LTLIBRARIES = $(lib_LTLIBRARIES)
+-liballtray_la_LIBADD =
++liballtray_la_LIBADD = -ldl -lX11
+ am_liballtray_la_OBJECTS = liballtray_la-nomap.lo
+ liballtray_la_OBJECTS = $(am_liballtray_la_OBJECTS)
+ liballtray_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+@@ -210,7 +210,7 @@ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+ lib_LTLIBRARIES = liballtray.la
+ liballtray_la_SOURCES = nomap.c
+-liballtray_la_LDFLAGS = -version-info 0:0:0 -ldl -lX11
++liballtray_la_LDFLAGS = -version-info 0:0:0
+ liballtray_la_CFLAGS = $(X_CFLAGS)
+ all: all-am
+ 
