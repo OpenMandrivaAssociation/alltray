@@ -5,7 +5,7 @@
 Summary:	Docks any application into the system tray
 Name:		alltray
 Version:	0.71b
-Release:	2
+Release:	3
 Group:		Graphical desktop/Other
 License:	GPL
 Url:		http://alltray.trausch.us/
