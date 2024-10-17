@@ -8,7 +8,7 @@ Version:	0.71b
 Release:	3
 Group:		Graphical desktop/Other
 License:	GPL
-Url:		http://alltray.trausch.us/
+Url:		https://alltray.trausch.us/
 Source0:	http://launchpad.net/alltray/old-maintenance/%{version}/+download/%{name}-%{version}.tar.gz
 Patch0:		alltray-0.71a-fix_linking.patch
 BuildRequires:	pkgconfig(gtk+-2.0)
