@@ -11,6 +11,11 @@ License:	GPL
 Url:		https://alltray.trausch.us/
 Source0:	http://launchpad.net/alltray/old-maintenance/%{version}/+download/%{name}-%{version}.tar.gz
 Patch0:		alltray-0.71a-fix_linking.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(gdk-pixbuf-xlib-2.0)
 BuildRequires:	pkgconfig(gconf-2.0)
